@@ -3,7 +3,7 @@ module EmailParsers
     include Parser
 
     def enquirer
-      @enquirer ||= Enquirer.new(user_name, user_email, enquiry)
+      @enquirer ||= Enquirer.new(user_name, user_email)
     end
 
     def vehicle
@@ -15,6 +15,16 @@ module EmailParsers
 
     def source
       'AMDirect'
+    end
+
+    def enquiry
+      elements = html_doc.at_css('.customer-details')
+                         .children
+                         .to_a
+                         .split { |a| a.text == 'Enquiry:' }
+                         .last
+
+      Array(elements).map { |el| el.name == 'br' ? "\n" : el.text.remove('  ') }.join
     end
 
     private
@@ -43,16 +53,6 @@ module EmailParsers
         define_method("user_#{user_method_suffix}") do
           find_text(".customer-details ##{user_method_suffix}")
         end
-      end
-
-      def enquiry
-        elements = html_doc.at_css('.customer-details')
-                           .children
-                           .to_a
-                           .split { |a| a.text == 'Enquiry:' }
-                           .last
-
-        Array(elements).map { |el| el.name == 'br' ? "\n" : el.text.remove('  ') }.join
       end
 
       def find_text(css)

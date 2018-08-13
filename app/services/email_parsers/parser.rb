@@ -2,7 +2,7 @@ module EmailParsers
   module Parser
     extend ActiveSupport::Concern
 
-    Enquirer = Struct.new(:name, :email, :enquiry)
+    Enquirer = Struct.new(:name, :email)
     Vehicle = Struct.new(:make, :model, :color, :year)
     EMPTY_ELEMENT = Nokogiri::XML.fragment('<span></span>')
 
@@ -25,7 +25,7 @@ module EmailParsers
       {
         name: enquirer.name,
         email: enquirer.email,
-        enquiry: enquirer.enquiry,
+        enquiry: enquiry,
         vehicle_attributes: {
           make: vehicle.make,
           model: vehicle.model,
@@ -45,6 +45,10 @@ module EmailParsers
     end
 
     def source
+      raise NotImplementedError
+    end
+
+    def enquiry
       raise NotImplementedError
     end
 
