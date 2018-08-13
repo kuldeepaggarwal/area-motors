@@ -24,7 +24,7 @@ module EmailParsers
                          .split { |a| a.text == 'Enquiry:' }
                          .last
 
-      Array(elements).map { |el| el.name == 'br' ? "\n" : el.text.remove('  ') }.join
+      find_line_breaker_text(elements)
     end
 
     private

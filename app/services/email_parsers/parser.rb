@@ -55,5 +55,11 @@ module EmailParsers
     def empty_element
       EMPTY_ELEMENT
     end
+
+    private
+
+      def find_line_breaker_text(elems)
+        Array(elems).map { |el| el.name == 'br' ? "\n" : el.text.remove('  ') }.join
+      end
   end
 end
