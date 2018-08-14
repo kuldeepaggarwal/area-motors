@@ -1,0 +1,29 @@
+<div class="table-responsive">
+  <%= link_to :synchronize_enquiries, method: :post, class: 'btn btn-info btn-lg float-left my-2 ml-2' do %>
+    <span class="glyphicon glyphicon-refresh">check for new enquiries</span>
+  <% end %>
+  <%= form_tag :enquiries, method: :get do %>
+    <div class="col-lg-4 mb-4 float-left my-2">
+      <div class="input-group">
+        <%= text_field_tag :q, params[:q], placeholder: 'Search for User', class: 'form-control' %>
+      </div>
+    </div>
+  <% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email Address</th>
+        <th scope="col">Enquiry</th>
+        <th scope="col">Source</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @enquiries %>
+    </tbody>
+  </table>
+
+  <%= paginate @enquiries %>
+</div>
