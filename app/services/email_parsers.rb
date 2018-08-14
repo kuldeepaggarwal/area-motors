@@ -5,7 +5,7 @@ module EmailParsers
     parser_candidate = file_name.to_s.downcase.split('-').first
     case parser_candidate
     when 'amdirect' then self::AMDirectParser
-    when 'carforsale' then self::CarsForSaleParser
+    when 'carsforsale' then self::CarsForSaleParser
     else raise(UnSupportedParserError, "Unsupported parser: '#{parser_candidate}'")
     end
   end
