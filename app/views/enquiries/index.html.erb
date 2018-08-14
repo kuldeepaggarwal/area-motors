@@ -1,6 +1,8 @@
 <div class="table-responsive">
+  <%= link_to :synchronize_enquiries, method: :post, class: 'btn btn-info btn-lg float-left' do %>
+    <span class="glyphicon glyphicon-refresh">check for new enquiries</span>
+  <% end %>
   <table class="table">
-    <caption>Enquiries</caption>
     <thead>
       <tr>
         <th scope="col">ID</th>
