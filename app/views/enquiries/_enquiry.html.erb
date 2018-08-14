@@ -4,5 +4,5 @@
   <td><%= enquiry.enquirer_email %></td>
   <td><%= enquiry.message %></td>
   <td><%= enquiry.source %></td>
-  <td></td>
+  <td><%= EnquiryPresenter.new(enquiry, params).actions %></td>
 </tr>
