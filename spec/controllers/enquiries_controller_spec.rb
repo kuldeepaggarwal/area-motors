@@ -16,4 +16,15 @@ describe EnquiriesController, type: :controller do
       expect(response).to redirect_to(enquiries_path)
     end
   end
+
+  describe 'GET #index' do
+    it 'searches for a specific user' do
+      EnquirySynchronizer.synchronize
+      get :index
+      expect(assigns(:enquiries).count).to eq(3)
+      get :index, params: { q: 'smith', per_page: 1 }
+      expect(assigns(:enquiries).count).to eq(1)
+      expect(assigns(:enquiries).total_count).to eq(2)
+    end
+  end
 end

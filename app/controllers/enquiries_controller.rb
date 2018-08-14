@@ -1,6 +1,8 @@
 class EnquiriesController < ApplicationController
   def index
-    @enquiries = Enquiry.page(params[:page])
+    @enquiries = Search::Enquiry
+                        .search(params[:q])
+                        .page(params[:page])
                         .per(params[:per_page])
                         .includes(:enquirer)
   end
