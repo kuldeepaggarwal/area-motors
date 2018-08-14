@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe EmailParsers::CarForSaleParser, type: :parser do
+describe EmailParsers::CarsForSaleParser, type: :parser do
   let(:email_content) do
     File.read(Rails.root.join('spec/fixtures/email_templates/cars_for_sale/careforsale-1.html'))
   end
@@ -18,7 +18,7 @@ describe EmailParsers::CarForSaleParser, type: :parser do
         color: 'White',
         year: '2006'
       },
-      source: 'CarForSale'
+      source: 'CarsForSale'
     )
   end
 end

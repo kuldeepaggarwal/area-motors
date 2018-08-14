@@ -1,5 +1,5 @@
 module EmailParsers
-  class CarForSaleParser
+  class CarsForSaleParser
     include Parser
     ALPHA_NUM_REGEXP = /[^A-z0-9]*/
     NAME_AND_EMAIL_REGEXP = /\n\s*(?<name>.*)\s*\((?<email>.*)\)/
@@ -13,7 +13,7 @@ module EmailParsers
     end
 
     def source
-      'CarForSale'
+      'CarsForSale'
     end
 
     def enquiry
